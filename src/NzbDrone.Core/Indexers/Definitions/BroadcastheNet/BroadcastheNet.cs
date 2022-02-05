@@ -16,7 +16,6 @@ namespace NzbDrone.Core.Indexers.BroadcastheNet
         public override bool SupportsRss => true;
         public override bool SupportsSearch => true;
         public override int PageSize => 100;
-        public override IndexerCapabilities Capabilities => SetCapabilities();
 
         public override string[] IndexerUrls => new string[] { "http://api.broadcasthe.net/" };
         public override string Description => "BroadcasTheNet (BTN) is an invite-only torrent tracker focused on TV shows";
@@ -46,28 +45,6 @@ namespace NzbDrone.Core.Indexers.BroadcastheNet
         public override IParseIndexerResponse GetParser()
         {
             return new BroadcastheNetParser(Capabilities.Categories);
-        }
-
-        private IndexerCapabilities SetCapabilities()
-        {
-            var caps = new IndexerCapabilities
-            {
-                LimitsDefault = 100,
-                LimitsMax = 1000,
-                TvSearchParams = new List<TvSearchParam>
-                       {
-                           TvSearchParam.Q, TvSearchParam.Season, TvSearchParam.Ep, TvSearchParam.TvdbId, TvSearchParam.RId
-                       }
-            };
-
-            caps.Categories.AddCategoryMapping("SD", NewznabStandardCategory.TVSD, "SD");
-            caps.Categories.AddCategoryMapping("720p", NewznabStandardCategory.TVHD, "720p");
-            caps.Categories.AddCategoryMapping("1080p", NewznabStandardCategory.TVHD, "1080p");
-            caps.Categories.AddCategoryMapping("1080i", NewznabStandardCategory.TVHD, "1080i");
-            caps.Categories.AddCategoryMapping("2160p", NewznabStandardCategory.TVHD, "2160p");
-            caps.Categories.AddCategoryMapping("Portable Device", NewznabStandardCategory.TVSD, "Portable Device");
-
-            return caps;
         }
     }
 }
