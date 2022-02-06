@@ -210,7 +210,7 @@ namespace NzbDrone.Core.IndexerVersions
             var dbDefs = _versionService.All();
 
             //Check to ensure it's in versioned defs before we go to web
-            if (dbDefs.Count > 0 && dbDefs.Any(x => x.File == fileKey))
+            if (dbDefs.Count > 0 && !dbDefs.Any(x => x.File == fileKey))
             {
                 throw new ArgumentNullException(nameof(fileKey));
             }
@@ -246,6 +246,11 @@ namespace NzbDrone.Core.IndexerVersions
             if (definition.Login != null && definition.Login.Method == null)
             {
                 definition.Login.Method = "form";
+            }
+
+            if (definition.Search == null)
+            {
+                definition.Search = new SearchBlock();
             }
 
             if (definition.Search.Paths == null)
