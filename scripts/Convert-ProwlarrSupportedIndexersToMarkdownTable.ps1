@@ -289,9 +289,10 @@ Write-Information 'Builds Converted to Markdown Tables'
 $wiki_page_start = $wiki_1newline + "- Supported Trackers and Indexers as of Build ``" + $build + "`` / [Commit: " + $commit + '](' + $wiki_commiturl + $commit + ')'
 Write-Information 'Page Header Built'
 
-## Build Page Pieces'
-$tbl_fmt_tor = $wiki_1newline + '## Torrents' + $wiki_2newline + '### Public Trackers' + $wiki_2newline + $tbl_fmt_PubTor + $wiki_1newline + '### Private & Semi-Private Trackers' + $wiki_2newline + $tbl_fmt_PrvTor
-$tbl_fmt_use = $wiki_1newline + '## Usenet' + $wiki_2newline + '### Public Indexers' + $wiki_2newline + $tbl_fmt_PubUse + $wiki_1newline + '### Private & Semi-Private Indexers' + $wiki_2newline + $tbl_fmt_PrvUse
+## Build Page Pieces
+## ToDo - Update when we are all YML so Newznab caps are correct
+$tbl_fmt_tor = $wiki_1newline + '## Torrents' + $wiki_2newline + '> Torrent capabilities vary by Tracker and are determined upon Tracker add. This table will be corrected to be accurate with Prowlarr Cardigann v5 and the switch to YML{.is-danger}' + $wiki_2newline + '### Public Trackers' + $wiki_2newline + $tbl_fmt_PubTor + $wiki_1newline + '### Private & Semi-Private Trackers' + $wiki_2newline + $tbl_fmt_PrvTor
+$tbl_fmt_use = $wiki_1newline + '## Usenet' + $wiki_2newline + '> Usenet capabilities vary by Indexer and are determined upon Indexer add. This table will be corrected to be accurate with Prowlarr Cardigann v5 and the switch to YML{.is-danger}' + $wiki_2newline + '### Public Indexers' + $wiki_2newline + $tbl_fmt_PubUse + $wiki_1newline + '### Private & Semi-Private Indexers' + $wiki_2newline + $tbl_fmt_PrvUse
 Write-Information 'Wiki Markdown Tables Built'
 $date = [DateTime]::UtcNow.ToString('o')
 $mdHeader = 
